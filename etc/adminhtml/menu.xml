@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Angeldm_Cockpit::cockpit" title="Cockpit" translate="title" module="Angeldm_Cockpit" parent="Magento_Backend::system" sortOrder="50" dependsOnModule="Angeldm_Cockpit" resource="Magento_Backend::system"/>
+        <add id="Angeldm_Cockpit::cockpit_open" title="Hello World" translate="title" module="Angeldm_Cockpit" parent="Angeldm_Cockpit::cockpit" sortOrder="10" dependsOnModule="Angeldm_Cockpit" action="cockpit/cockpit" resource="Magento_Backend::system"/>
+    </menu>
+</config>
