@@ -1,7 +1,7 @@
 {
     "name": "angeldm/mangento2-cockpit",
     "type": "magento2-module",
-    "description": "Shows terminal from Cockpit Server in backend",
+    "description": "Show terminal from Cockpit Server in backend",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
