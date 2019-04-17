@@ -1,15 +1,18 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Terminal
+ *
+ * @copyright Copyright © 2019 Angeldm. All rights reserved.
+ * @author    angeldm@gmail.com
  */
 namespace Angeldm\Cockpit\Block\Adminhtml\System\Config;
 
-use Magento\Backend\Block\Template\Context;
-use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 
-class TestConnection extends Field
+/**
+ * @author Àngel Díaz <angeldm@gmail.com>
+ */
+class TestConnection extends \Magento\Config\Block\System\Config\Form\Field
 {
     /**
      * @var string
@@ -17,23 +20,12 @@ class TestConnection extends Field
     protected $_template = 'Angeldm_Cockpit::system/config/test_connection.phtml';
 
     /**
-     * @param Context $context
-     * @param array $data
-     */
-    public function __construct(
-        Context $context,
-        array $data = []
-    ) {
-        parent::__construct($context, $data);
-    }
-
-    /**
      * Remove scope label
      *
-     * @param  AbstractElement $element
+     * @param  \Magento\Framework\Data\Form\Element\AbstractElement $element
      * @return string
      */
-    public function render(AbstractElement $element)
+    public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
         $element->unsScope()->unsCanUseWebsiteValue()->unsCanUseDefaultValue();
         return parent::render($element);
@@ -42,7 +34,7 @@ class TestConnection extends Field
     /**
      * Return element html
      *
-     * @param  AbstractElement $element
+     * @param  \Magento\Framework\Data\Form\Element\AbstractElement $element
      * @return string
      */
     protected function _getElementHtml(AbstractElement $element)
@@ -59,26 +51,25 @@ class TestConnection extends Field
         return $this->getUrl(
             'cockpit/system_config/testConnection',
             ['store' => $this->_request->getParam('store')]
-            );
+        );
     }
 
     /**
-         * Generate collect button html
-         *
-         * @return string
-         * @throws \Magento\Framework\Exception\LocalizedException
-         */
+     * Generate button html
+     *
+     * @return string
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     public function getButtonHtml()
     {
-        $button = $this->getLayout()->createBlock(
-            'Magento\Backend\Block\Widget\Button'
-            )->setData(
-                [
-                    'id' => 'test_connection',
-                    'label' => __('Test Connection'),
-                    'style' => 'display: block'
-                ]
-            );
-        return $button->toHtml();
+        return $this->getLayout()->createBlock(
+            \Magento\Backend\Block\Widget\Button::class
+        )->setData(
+            [
+                  'id' => 'test_connection',
+                  'label' => __('Test Connection'),
+                  'style' => 'display: block'
+              ]
+        )->toHtml();
     }
 }

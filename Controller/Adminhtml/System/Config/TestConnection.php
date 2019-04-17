@@ -1,37 +1,38 @@
 <?php
 /**
- * Copyright © 2016 MageWorx. All rights reserved.
- * See LICENSE.txt for license details.
+ * Terminal
+ *
+ * @copyright Copyright © 2019 Angeldm. All rights reserved.
+ * @author    angeldm@gmail.com
  */
-
 namespace Angeldm\Cockpit\Controller\Adminhtml\System\Config;
 
-use Angeldm\Cockpit\Helper\Data;
-use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
-use Magento\Framework\Controller\Result\Json;
-use Magento\Framework\Controller\Result\JsonFactory;
-use Psr\Log\LoggerInterface;
-
-class TestConnection extends Action
+/**
+ * @author Àngel Díaz <angeldm@gmail.com>
+ */
+class TestConnection extends \Magento\Backend\App\Action
 {
+
+  /**
+   * @var \Magento\Framework\Controller\Result\JsonFactory
+   */
     protected $resultJsonFactory;
 
     /**
-     * @var Data
+     * @var \Angeldm\Cockpit\Helper\Data
      */
     protected $helper;
 
     /**
-     * @param Context $context
-     * @param JsonFactory $resultJsonFactory
-     * @param Data $helper
+     * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
+     * @param \Angeldm\Cockpit\Helper\Data $helper
      */
     public function __construct(
-        Context $context,
-        JsonFactory $resultJsonFactory,
-        LoggerInterface $logger,
-        Data $helper
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
+        \Psr\Log\LoggerInterface $logger,
+        \Angeldm\Cockpit\Helper\Data $helper
     ) {
         $this->resultJsonFactory = $resultJsonFactory;
         $this->helper = $helper;
@@ -45,7 +46,7 @@ class TestConnection extends Action
      */
     public function execute()
     {
-        /** @var Json $result */
+        /** @var \Magento\Framework\Controller\Result\Json $result */
         $result = $this->resultJsonFactory->create();
         try {
             if (!$this->helper->ping()) {

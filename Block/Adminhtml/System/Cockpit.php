@@ -6,13 +6,17 @@
  * @author    angeldm@gmail.com
  */
 
-namespace Angeldm\Cockpit\Block;
+namespace Angeldm\Cockpit\Block\Adminhtml\System;
 
-use Angeldm\Cockpit\Helper\Data;
-use Magento\Framework\View\Element\Template;
-
-class Cockpit extends Template
+/**
+ * @author Àngel Díaz <angeldm@gmail.com>
+ */
+class Cockpit extends \Magento\Framework\View\Element\Template
 {
+
+    /**
+     * @var \Angeldm\Cockpit\Helper\Data
+     */
     protected $helper;
     /**
      * Constructor
@@ -22,40 +26,61 @@ class Cockpit extends Template
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
-        Data $helper,
+        \Angeldm\Cockpit\Helper\Data $helper,
         array $data = []
     ) {
         $this->helper = $helper;
         parent::__construct($context, $data);
     }
 
+    /**
+     * Get Host
+     *
+     * @return string
+     */
     public function getHost()
     {
         return $this->helper->getHost();
     }
 
+    /**
+     * Get port
+     *
+     * @return string
+     */
     public function getPort()
     {
         return $this->helper->getPort();
     }
 
+    /**
+     * Get enabled
+     *
+     * @return bool
+     */
     public function isEnabled()
     {
         return $this->helper->isEnabled();
     }
 
+    /**
+     * Get ping
+     *
+     * @return bool
+     */
     public function ping()
     {
         return $this->helper->ping();
     }
 
-    public function getDashboard()
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getCockpitURL()
     {
-        return $this->helper->getDashboard();
-    }
-
-    public function getTabs()
-    {
-        return $this->helper->getTabs();
+        return 'https://' . $this->helper->getHost()
+        . ':' . $this->helper->getPort() . '/cockpit/@localhost/system/terminal.html';
     }
 }
