@@ -8,7 +8,11 @@
         "name": "Mage2Gen"
     }],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "magento/module-backend": "*",
+        "magento/framework": "*",
+        "psr/log": "~1.1.0"
+    },
     "autoload": {
         "files": [
             "registration.php"

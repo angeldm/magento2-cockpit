@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="advanced" sortOrder="999" translate="label">
+            <label>advanced</label>
+        </tab>
+        <section id="system" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label">
+            <label>system</label>
+            <tab>advanced</tab>
+            <resource>Angeldm_Cockpit::config</resource>
+            <group id="server" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label">
+                <label>Cockpit</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>angeldm/cockpit/enabled</config_path>
+                    <comment>Helpful message about using this field.</comment>
+                    <tooltip>Longer helpful message about using this field.</tooltip>
+                </field>
+
+                <field id="host" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Host</label>
+                    <validate>required-entry</validate>
+                    <config_path>angeldm/cockpit/host</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <comment/>
+                </field>
+                <field id="port" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>port</label>
+                    <validate>required-entry validate-range range-1025-65536</validate>
+                    <config_path>angeldm/cockpit/port</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <comment/>
+                </field>
+                <field id="dashboard" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Dashboard</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>angeldm/cockpit/dashboard</config_path>
+                    <tooltip>Add Cockpit info to dashboard</tooltip>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="tabs" translate="label comment" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>tabs</label>
+                    <comment/>
+                    <source_model>Angeldm\Cockpit\Model\Config\Source\Tabs</source_model>
+                    <config_path>angeldm/cockpit/tabs</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="test_connection" translate="label comment" type="button" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label/>
+                    <button_label>Test Connection</button_label>
+                    <comment>
+                        <![CDATA[This action ping Cockpit Server]]>
+                    </comment>
+                    <frontend_model>Angeldm\Cockpit\Block\Adminhtml\System\Config\TestConnection</frontend_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

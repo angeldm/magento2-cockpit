@@ -1,6 +1,6 @@
 <?php
 
-namespace Angeldm\Cockpit\Controller\Adminhtml\Cockpit;
+namespace Angeldm\Cockpit\Controller\Adminhtml\Logs;
 
 class Index extends \Magento\Backend\App\Action
 {
@@ -31,7 +31,7 @@ class Index extends \Magento\Backend\App\Action
     public function execute()
     {
         $page = $this->resultPageFactory->create();
-        $page->getConfig()->getTitle()->prepend(__('Cockput Terminal'));
+        $page->getConfig()->getTitle()->prepend(__('Cockpit Logs'));
         return $page;
     }
 }

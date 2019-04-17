@@ -1,0 +1,74 @@
+<?php
+
+if (!$this->isEnabled()) {
+    ?>
+<h>Cockpit not enabled</h>
+<?php
+} else {
+        if ($this->ping() != 200) {
+            ?>
+<h>Cockpit not ping</h>
+<?php
+        } else {
+            ?>
+
+<div class="dashboard-container row">
+  <div class="dashboard-main col-m-12">
+    <div id="opcache_tab" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+      <ul class="tabs-horiz ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+        <?php
+                        $i=1;
+            $array = $this->getTabs();
+            foreach ($array as &$valor) {
+                ?>
+        <li class="ui-state-default ui-corner-top" role="tab" tabindex="0" aria-controls="diagram_tab_orders_content" aria-labelledby="diagram_tab_orders" aria-selected="true">
+          <a href="#tab_<?=$i?>_content" id="tab_<?=$i?>" title="Ini Settings" class="ui-tabs-anchor" data-tab-type="" role="presentation" tabindex="-1">
+            <span><?=$valor['label']?></span>
+          </a>
+        </li>
+        <?php
+                          $i++;
+            } ?>
+      </ul>
+    </div>
+    <script>
+      require(["jquery", "mage/backend/tabs"], function($) {
+        $(function() {
+          $('#opcache_tab').tabs({
+            active: 'tab_1',
+            destination: '#opcache_tab_content',
+            shadowTabs: []
+          });
+        });
+      });
+    </script>
+    <div id="opcache_tab_content">
+      <?php
+
+                    $array = $this->getTabs();
+            $i=1;
+            foreach ($array as &$valor) {
+                ?>
+      <div id="tab_<?=$i?>_content" style="display: none;" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true">
+        <iframe name="<?=$i?>" style="
+        width: 100%;
+        width: -webkit-fill-available;
+        height: 700px;"src="https://<?= $this->getHost() ?>:<?= $this->getPort() ?>/cockpit/@localhost/<?=$valor['url']?>"></iframe>
+      </div>
+      <?php
+                      $i++;
+            } ?>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<?php
+        }
+    } ?>
