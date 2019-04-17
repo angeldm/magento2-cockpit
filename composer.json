@@ -1,5 +1,5 @@
 {
-    "name": "angeldm/mangento2-cockpit",
+    "name": "angeldm/magento2-cockpit",
     "type": "magento2-module",
     "description": "Show terminal from Cockpit Server in backend",
     "license": [
