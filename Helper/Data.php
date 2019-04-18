@@ -23,9 +23,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Framework\HTTP\Client\Curl $curl
     ) {
         $this->curl = $curl;
-
-        $this->curl->setOption(CURLOPT_SSL_VERIFYHOST, false);
-        $this->curl->setOption(CURLOPT_SSL_VERIFYPEER, false);
         parent::__construct($context);
     }
 
@@ -43,6 +40,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * Get enabled
+     *
+     * @return bool
+     */
+    public function getSSLEnabled($scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT)
+    {
+        return $this->scopeConfig->isSetFlag(
+            'angeldm/cockpit/ssl',
+            $scope
+        );
+    }
+    /**
      * Get ping
      *
      * @return bool
@@ -52,6 +61,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         try {
             $host = $this->getHost();
             $port = $this->getPort();
+            if ($this->getSSLEnabled()==0) {
+                $this->curl->setOption(CURLOPT_SSL_VERIFYHOST, false);
+                $this->curl->setOption(CURLOPT_SSL_VERIFYPEER, false);
+            }
             $url = 'https://' . $host . ':' . $port . '/ping';
             $this->curl->get($url);
             $status =$this->curl->getStatus();

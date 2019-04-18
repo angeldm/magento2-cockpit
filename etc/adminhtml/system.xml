@@ -8,10 +8,10 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <tab id="advanced" sortOrder="999" translate="label">
-            <label>advanced</label>
+            <label>Advanced</label>
         </tab>
         <section id="system" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label">
-            <label>system</label>
+            <label>System</label>
             <tab>advanced</tab>
             <resource>Angeldm_Cockpit::config</resource>
             <group id="server" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label">
@@ -20,11 +20,9 @@
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <config_path>angeldm/cockpit/enabled</config_path>
-                    <comment>Helpful message about using this field.</comment>
-                    <tooltip>Longer helpful message about using this field.</tooltip>
                 </field>
                 <field id="host" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Host</label>
+                    <label>Hostname</label>
                     <validate>required-entry</validate>
                     <config_path>angeldm/cockpit/host</config_path>
                     <depends>
@@ -33,13 +31,18 @@
                     <comment/>
                 </field>
                 <field id="port" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>port</label>
+                    <label>Port</label>
                     <validate>required-entry validate-range range-1025-65536</validate>
                     <config_path>angeldm/cockpit/port</config_path>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>
                     <comment/>
+                </field>
+                <field id="ssl" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>SSL verify</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>angeldm/cockpit/ssl</config_path>
                 </field>
                 <field id="test_connection" translate="label comment" type="button" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label/>
